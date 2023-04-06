@@ -1,0 +1,77 @@
+syntax ="proto3";
+
+option java_package = "com.assignment.grpc";
+option java_multiple_files = true;
+message QueryOneRequest {
+	int32 year = 1;
+	string state = 2;
+	string type = 3;
+	string length = 4;
+	string expense = 5;
+}
+message QueryOneResponse{
+	repeated int32 value = 1;
+}
+service EduCostStatQueryOneService{
+	rpc QueryOne(QueryOneRequest) returns (QueryOneResponse);
+}
+message QueryTwoRequest{
+	int32 year = 1;
+	string type = 2;
+	string length = 3;
+}
+message QueryTwoResponse{
+	repeated StateExpenseQueryTwo state_expense = 1;
+}
+message StateExpenseQueryTwo{
+	string state = 1;
+	int32 overall_expense = 2;
+}
+service EduCostStatQueryTwoService{
+	rpc QueryTwo(QueryTwoRequest) returns (QueryTwoResponse);
+}
+message QueryThreeRequest{
+	int32 year = 1;
+	string type = 2;
+	string length = 3;
+}
+message QueryThreeResponse{
+	repeated StateExpenseQueryThree state_expense = 1;
+}
+message StateExpenseQueryThree{
+	string state = 1;
+	int32 overall_expense = 2;
+}
+service EduCostStatQueryThreeService{
+	rpc QueryThree(QueryThreeRequest) returns (QueryThreeResponse);
+}
+message QueryFourRequest{
+	string type = 1;
+	string length = 2;
+	int32 range = 3;
+}
+message QueryFourResult{
+	string state = 1;
+	float growth_rate = 2;
+}
+message QueryFourResponse{
+	repeated QueryFourResult results = 1;
+}
+service EduCostStatQueryFourService{
+	rpc QueryFour(QueryFourRequest) returns (QueryFourResponse);
+}
+message QueryFiveRequest{
+	int32 year = 1;
+	string type = 2;
+	string length = 3;
+}
+message QueryFiveResult{
+	string id = 1;
+	int32 total_value = 2;
+}
+message QueryFiveResponse{
+	repeated QueryFiveResult results = 1;
+}
+service EduCostStatQueryFiveService{
+	rpc QueryFive(QueryFiveRequest) returns (QueryFiveResponse);
+}
